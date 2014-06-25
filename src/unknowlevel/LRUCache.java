@@ -1,20 +1,16 @@
 package unknowlevel;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LRUCache {
+	private HashMap<Integer, Integer> map;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private LinkedHashMap<Integer, Integer> map;
-
+	@SuppressWarnings("serial")
 	public LRUCache(final int capacity) {
-		map = new LinkedHashMap<Integer, Integer>(capacity, 0.75f, true) {
-			protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+		map = new LinkedHashMap<Integer,Integer>(capacity,0.75f,true){
+			protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest){
 				return size() > capacity;
 			}
 		};
@@ -31,4 +27,9 @@ public class LRUCache {
 	public void set(int key, int value) {
 		map.put(key, value);
 	}
+
+	public static void main(String[] args) {
+
+	}
+
 }

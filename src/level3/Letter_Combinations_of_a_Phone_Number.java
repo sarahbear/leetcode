@@ -1,6 +1,7 @@
 package level3;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Letter_Combinations_of_a_Phone_Number {
 
@@ -8,32 +9,33 @@ public class Letter_Combinations_of_a_Phone_Number {
 
 	}
 
-	public ArrayList<String> letterCombinations(String digits) {
-		ArrayList<String> ans = new ArrayList<String>();
-		combine(digits, ans, 0, "");
+	public List<String> letterCombinations(String digits) {
+		List<String> ans = new ArrayList<String>();
+		search(ans, digits, 0, "");
 		return ans;
 	}
 
-	private void combine(String digits, ArrayList<String> ans, int start, String str) {
-		if (start >= digits.length()) {
-			ans.add(str);
+	private void search(List<String> ans, String digits, int pos, String s) {
+		if (pos >= digits.length()) {
+			ans.add(s);
 			return;
 		}
-		int index = digits.charAt(start) - '0';
+		int index = digits.charAt(pos) - '0';
 		for (int i = 0; i < table[index].length(); i++) {
-			combine(digits, ans, start + 1, str + table[index].charAt(i));
+			search(ans, digits, pos + 1, s + table[index].charAt(i));
 		}
 	}
 
-	private static final String[] table = { " ",// 0
-			"",// 1
-			"abc",// 2
-			"def",// 3
-			"ghi",// 4
-			"jkl",// 5
-			"mno",// 6
-			"pqrs",// 7
-			"tuv",// 8
-			"wxyz"// 9
+	private static final String[] table = { 
+		" ",
+		"", 
+		"abc", 
+		"def", 
+		"ghi", 
+		"jkl", 
+		"mno", 
+		"pqrs",
+		"tuv", 
+		"wxyz" 
 	};
 }
